@@ -28,10 +28,17 @@ public class Deck {
 	 * @param ranks is an array containing all of the card ranks.
 	 * @param suits is an array containing all of the card suits.
 	 * @param values is an array containing all of the card point values.
+	 * @return 
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		size = ranks.length;
+		size = cards.size();
+		String[] rank = ranks;
+		String[] suit = suits;
+		int[] pointValues = values;
+		Deck d = new Deck(rank, suit, pointValues);
+		
+		
 	}
 
 
@@ -62,6 +69,7 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
+		
 	}
 
 	/**
@@ -71,7 +79,17 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		
+		if (isEmpty() == false) {
+			for (int i = 0; i < size; i++) {
+			return cards.get(1);
+		}
+		}
+		return null;
 	}
+
+	
+
 
 	/**
 	 * Generates and returns a string representation of this deck.
