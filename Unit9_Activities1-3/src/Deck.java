@@ -32,14 +32,19 @@ public class Deck {
 	 */
 	public Deck(String[] ranks, String[] suits, int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		cards = new ArrayList<Card>(values.length);
+		for (int i = 0; i < values.length; i++) {
+			int count = (int)(Math.random()*values.length);
+			int second = (int)(Math.random()*suits.length);
+			Card test = new Card(ranks[count], suits[second], values[count]);
+			
+			cards.add(test);
+		}
+			
 		size = cards.size();
-		String[] rank = ranks;
-		String[] suit = suits;
-		int[] pointValues = values;
-		Deck d = new Deck(rank, suit, pointValues);
-		
 		
 	}
+
 
 
 	/**
@@ -69,7 +74,8 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		
+		Shuffler test = new Shuffler();
+		test.perfectShuffler();
 	}
 
 	/**
@@ -79,13 +85,23 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
+		cards = new ArrayList<Card>(size);
+		Card Dealt;
+		List<Card> Discard = cards;
 		if (isEmpty() == false) {
 			for (int i = 0; i < size; i++) {
-			return cards.get(1);
-		}
+				
+				if (i == size -1) {
+					Dealt = cards.get(i);
+					Discard.remove(cards.get(i));
+					return Dealt;
+				}
+				
+			}
+			
 		}
 		return null;
+		
 	}
 
 	
@@ -118,11 +134,13 @@ public class Deck {
 			}
 			if ((k - cards.size()) % 2 == 0) {
 				// Insert carriage returns so entire deck is visible on console.
+				
 				rtn = rtn + "\n";
 			}
 		}
 
 		rtn = rtn + "\n";
+		rtn = rtn + deal();
 		return rtn;
 	}
 }
