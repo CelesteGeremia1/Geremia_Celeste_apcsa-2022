@@ -18,6 +18,8 @@ public class ToyStore
 
 	public void loadToys( String toys )
 	{
+		ArrayList<Toy> toyList = new ArrayList<Toy>();
+		
 	}
   
   	public Toy getThatToy( String nm )
