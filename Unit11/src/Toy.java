@@ -11,10 +11,14 @@ public class Toy
 
 	public Toy()
 	{
+		name = "toy";
+		count = 1;
 	}
 
 	public Toy( String nm )
 	{
+		name = nm;
+		count = 1;
 	}
 	
 	public int getCount()

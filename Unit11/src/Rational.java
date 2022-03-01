@@ -12,16 +12,18 @@ class Rational implements Comparable<Rational>
 	
 	//write two constructors
 	public Rational() {
-		
+		setRational(1, 1);
 	}
 	
 	public Rational(int num1, int num2) {
+		setRational(num1, num2);
 		
 	}
 
 	//write a setRational method
 	public void setRational(int num1, int num2) {
-		
+		numerator = num1;
+		denominator = num2;
 	}
 
 	//write  a set method for numerator and denominator
@@ -83,7 +85,9 @@ class Rational implements Comparable<Rational>
 	}
 
 
-
+	public String toString() {
+		
+	}
 	
 	//write  toString() method
 	

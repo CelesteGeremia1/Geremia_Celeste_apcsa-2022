@@ -11,6 +11,10 @@ public class ToyStoreRunner
 {
 	public static void main( String args[] )
 	{
-
+		ToyStore sto = new ToyStore();
+		System.out.print(sto);
+		sto.loadToys("Sorry Bat Sorry Sorry Sorry Train Train Teddy Teddy Ball");
+		sto.toString();
+		
 	}
 }
