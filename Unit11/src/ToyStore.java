@@ -24,9 +24,11 @@ public class ToyStore
 			if (t == null) 
 			{
 				toyList.add( new Toy( name ));
+				
 			}
 			else {
 				t.setCount(t.getCount() + 1);
+				
 			}
 		}
 		
@@ -61,13 +63,14 @@ public class ToyStore
   		int count = 0;
   		int need = toyList.size();
   		Toy adding = toyList.get(0);
-  		ArrayList<Toy> newList = null;
+  		ArrayList<Toy> newList = new ArrayList<Toy>();
+  		
   		for (int i = 0; i < need; i++) {
   			count = 0;
-  			for (int j = 0; j < need; j++) {
+  			for (int j = 0; j < toyList.size(); j++) {
   	  			if (toyList.get(j).getCount() > count) {
   	  				count = toyList.get(j).getCount();
-  	  				adding = toyList.get(j);
+  	  				adding = toyList.get(j);	
   	  			}
   	  		}
   			newList.add(adding);
@@ -78,6 +81,12 @@ public class ToyStore
   	  
 	public String toString()
 	{
-	   return "[" + toyList + "]";
+	  // System.out.println(toyList.get(0));
+		String toys = "";
+		for (int i = 0; i < toyList.size(); i++) {
+		   toys = toys + toyList.get(i).getName() + " ";
+	   }
+		
+		return  toys + "test";
 	}
 }

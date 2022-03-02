@@ -13,7 +13,8 @@ public class ToyStoreRunner
 	{
 		ToyStore sto = new ToyStore();
 		System.out.print(sto);
-		sto.loadToys("Sorry Bat Sorry Sorry Sorry Train Train Teddy Teddy Ball");
+		sto.loadToys("sorry bat sorry sorry sorry train train teddy teddy ball");
+		//sto.sortToysByCount();
 		sto.toString();
 		
 	}
