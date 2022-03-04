@@ -74,7 +74,7 @@ class Rational implements Comparable<Rational>
 	
 	public boolean equals( Object obj)
 	{
-		if (obj.equals(1/1)) {
+		if (obj) {
 			return true;
 		}
 
