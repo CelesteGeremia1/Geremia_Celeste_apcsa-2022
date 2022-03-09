@@ -32,6 +32,11 @@ public class WordRunner
 				if( test.compareTo(test2)> 0) {
 					spot = j;
 				}
+				else if (test.compareTo(test2) == 0) {
+					if(test.toString().charAt(0) > test2.toString().charAt(0)) {
+						spot = j;
+					}
+				}
 			}
 			String save = list[i];
 			list[i] = test.toString();
