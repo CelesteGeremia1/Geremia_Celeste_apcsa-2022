@@ -38,7 +38,7 @@ public class Skeleton implements Monster
 		return howBig;
 	}
 	public boolean namesTheSame(Monster other) {
-		if (other.getName() == name) {
+		if (other.getName().equals(name)) {
 			return true;
 		}
 		return false;	
