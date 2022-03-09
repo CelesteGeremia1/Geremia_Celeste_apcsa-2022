@@ -35,6 +35,9 @@ public class MonsterRunner
 		 if (skeleton1.isSmaller(skeleton2)) {
 			 System.out.println("Monster one is smaller than Monster two.");
 		 }
+		 if(!skeleton1.isSmaller(skeleton2) && !skeleton1.isBigger(skeleton2)) {
+			 System.out.println("Monster one is the same size as Monster two.");
+		 }
 		 if (skeleton1.namesTheSame(skeleton2)) {
 			 System.out.println("Monster one does have the same name as Monster two"); 
 		 }
