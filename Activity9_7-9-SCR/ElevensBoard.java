@@ -53,21 +53,7 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		int one = selectedCards.get(0);
-		int two = selectedCards.get(1);
-		int three = selectedCards.get(2);
-		if (one + two + three == 11) {
-			return true;
-		}
-		else if(one == 11 || one == 12 || one == 13) {
-			if ((two == 11 || two == 12 || two == 13) && two != one) {
-				if ((three == 11 || three == 12 || three == 13) && (three != one || three != two)) {
-					return true;
-				}
-			}
-		}
-		
-		return false;
+		return (containsPairSum11(selectedCards) || containsJQK(selectedCards));
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
 
@@ -84,7 +70,13 @@ public class ElevensBoard extends Board {
 		for (int i = 0; i < super.size(); i++) {
 			for (int j = i+1; j < super.size(); j++) {
 				for (int k = j+1; k < super.size(); k++) {
-					if (super.cardAt(i).pointValue() + super.cardAt(j).pointValue() + super.cardAt(k).pointValue() == 11) {
+					if (super.cardAt(i).pointValue() + super.cardAt(k).pointValue() == 11) {
+						return true;
+					}
+					if (super.cardAt(i).pointValue() + super.cardAt(j).pointValue() == 11) {
+						return true;
+					}
+					if (super.cardAt(j).pointValue() + super.cardAt(k).pointValue() == 11) {
 						return true;
 					}
 					else if(super.cardAt(i).rank() == "king" || super.cardAt(i).rank() == "queen" || super.cardAt(i).rank() == "jack") {
@@ -116,7 +108,13 @@ public class ElevensBoard extends Board {
 		for (int i = 0; i < selectedCards.size(); i++) {
 			for (int j = i+1; j < selectedCards.size(); j++) {
 				for (int k = j+1; k < selectedCards.size(); k++) {
-					if (selectedCards.get(i) + selectedCards.get(j) + selectedCards.get(k) == 11) {
+					if (selectedCards.get(i) + selectedCards.get(k) == 11) {
+						return true;
+					}
+					if (selectedCards.get(j) + selectedCards.get(k) == 11) {
+						return true;
+					}
+					if (selectedCards.get(i) + selectedCards.get(j) == 11) {
 						return true;
 					}
 				}
