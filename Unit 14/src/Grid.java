@@ -12,6 +12,7 @@ public class Grid
 		grid = new String[rows][cols];
 		
 		for(int i = 0; i < rows; i++) {
+			
 			for(int j = 0; j < cols; j++) {
 				int k = (int)(Math.random() * vals.length);
 				grid[i][j] = vals[k];
@@ -25,25 +26,52 @@ public class Grid
 	public String findMax(String[] vals)
 	{
 		int count = 0;
-		for (int i = 0; i < grid[1].length; i++) {
-			for (int j = 0; j < vals.length; j++) {
-				
+		int count2 = 0;
+		String result = "";
+		for (int i = 0; i < vals.length; i++) {
+			count = 0;
+			for (int k = 0; k < grid.length; k++) {
+				for (int j = 0; j < grid[1].length; j++) {
+				if (vals[i] == grid[k][j]) {
+					count++;
+				}
+			}
+			}
+			
+			if (count > count2) {
+				count2 = count;
+				result = vals[i];
 			}
 		}
 		
-		return "nothing yet";
+		return result + " appears " + count2 + " times";
 	}
 
 	//returns a count of how many times val occurs in the matrix
 	private int countVals( String val )
 	{
-		return 0;
+		int count = 0;
+	
+			for (int k = 0; k < grid.length; k++) {
+				for (int j = 0; j < grid[1].length; j++) {
+				if (val == grid[k][j]) {
+					count++;
+				}
+			}
+			}
+		return count;
 	}
 
 	//display the grid
 	public String toString()
 	{
 		String output="";
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[1].length; j++) {
+				output = output + " " + grid[i][j];
+			}
+			output = output + "\n";
+		}
 		return output;
 	}
 }
