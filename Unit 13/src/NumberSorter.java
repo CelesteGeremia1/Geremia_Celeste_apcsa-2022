@@ -21,6 +21,7 @@ public class NumberSorter
 	public static int[] getSortedDigitArray(int number)
 	{
 		int[] sorted = null;
+		
 		return sorted;
 	}
 }
