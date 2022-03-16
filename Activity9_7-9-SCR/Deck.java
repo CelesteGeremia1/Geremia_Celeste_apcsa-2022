@@ -1,4 +1,3 @@
-package activity9;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -19,7 +18,7 @@ public class Deck {
 	 * Cards are dealt from the top (highest index) down.
 	 * The next card to be dealt is at size - 1.
 	 */
-	private int size;
+	private int size = 16;
 
 
 	/**
@@ -68,7 +67,7 @@ public class Deck {
 		}
 			
 		cards = cars;
-		size = cards.size();
+		
 	}
 
 
@@ -79,8 +78,7 @@ public class Deck {
 	 */
 	public boolean isEmpty() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		
-		if (size == 0) {
+		if (cards.size() == 0) {
 			return true;
 		}
 		return false;
@@ -101,12 +99,7 @@ public class Deck {
 	 */
 	public void shuffle() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 4 *** */
-		int[] amount = new int[cards.size()];
 		
-		for (int i = 0; i < cards.size(); i++) {
-			amount[i] = i;
-		}
-		Shuffler.perfectShuffle(amount);
 	}
 
 	/**
@@ -119,12 +112,9 @@ public class Deck {
 		
 		Card Delt;
 		int count = (int)(Math.random()*size + 1);
-		if (!isEmpty()) {
-			Delt = cards.get(count);
-			size = size-1;
-			return Delt;
-		}
-		return null;
+		
+		Delt = cards.get(count);
+		return Delt;
 		
 		
 	}
@@ -139,7 +129,7 @@ public class Deck {
 	@Override
 	public String toString() {
 		String rtn = "size = " + size + "\nUndealt cards: \n";
-		
+
 		for (int k = size - 1; k >= 0; k--) {
 			rtn = rtn + cards.get(k);
 			if (k != 0) {
