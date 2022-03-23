@@ -15,12 +15,13 @@ public class WordSortTwoRunner
 		Scanner file = new Scanner(new File("wordsorttwo.dat"));
 		int size = file.nextInt();
 		file.nextLine();
-		for(int i = 0; i<size; i++)
+		
+		for(int i = 0; i < size; i++)
 		{
 			String sentence = file.nextLine();
 			
 			WordSortTwo test = new WordSortTwo(sentence);
-			test.toString();
+			System.out.println(test.toString());
 			//instantiate a new WordSort
 		}
 	}

@@ -11,17 +11,37 @@ import static java.lang.System.*;
 public class NumberSorter
 {
 	//instance variables and other methods not shown
+	 
 
 	private static int getNumDigits(int number)
 	{
-		int count = 0;
-		return count;
+		int nums = number;
+		int i = 0;
+		while (nums != 0) {
+			nums = nums/10;
+			i++;
+		}
+		return i;
 	}
 
 	public static int[] getSortedDigitArray(int number)
 	{
-		int[] sorted = null;
-		
+		int[] sorted = new int[getNumDigits(number)];
+		int nums = number;
+		for (int k = 0; k < getNumDigits(number) ; k++) {
+			System.out.println(nums%10 + " hey ");
+			sorted[k] = nums%10;
+			nums = nums/10;
+		}
+		for (int i = 0; i < getNumDigits(number); i++) {
+			for (int p = 0; p < getNumDigits(number); p++) {
+				if (sorted[i] < sorted[p]) {
+					int save = sorted[p];
+					sorted[p] = sorted[i];
+					sorted[i] = save;
+				}
+			}
+		}
 		return sorted;
 	}
 }

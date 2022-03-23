@@ -30,15 +30,27 @@ public class WordSortTwo
 	{
 		for (int i = 0; i < wordRay.length; i++) {
 			for  (int j = 0; j < wordRay.length -1; j++) {
+				if (wordRay[j].charAt(0) > wordRay[j+1].charAt(0)) {
+				String save = wordRay[j];
+				wordRay[j] = wordRay[j+1];
+				wordRay[j+1] = save;
+				}
 				if (wordRay[j].charAt(0) < wordRay[j+1].charAt(0)) {
-					System.out.print(wordRay[j] + " ");
-					System.out.print(wordRay[j + 1] + "\n");
-					String save = wordRay[j];
-					wordRay[j] = wordRay[j+1];
-					wordRay[j+1] = save;
+					
+				}
+				else if (wordRay[j].charAt(0) == wordRay[j+1].charAt(0)) {
+					for (int p = 0; p < wordRay[j].length() && p < wordRay[j+1].length(); p++) {
+						if (wordRay[j].charAt(p) > wordRay[j+1].charAt(p)) {
+							String save = wordRay[j];
+							wordRay[j] = wordRay[j+1];
+							wordRay[j+1] = save;
+							p = wordRay[j].length();
+							}
+					}
 				}
 			}
 		}
+		
 	}
 
 	public String toString()
