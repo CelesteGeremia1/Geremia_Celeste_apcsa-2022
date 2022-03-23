@@ -1,3 +1,4 @@
+package activity9;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -46,6 +47,7 @@ public abstract class Board {
 	 * dealing some cards to this board.
 	 */
 	public void newGame() {
+		
 		deck.shuffle();
 		dealMyCards();
 	}

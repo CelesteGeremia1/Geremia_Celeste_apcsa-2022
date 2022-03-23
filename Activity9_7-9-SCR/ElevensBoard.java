@@ -1,3 +1,4 @@
+package activity9;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -53,21 +54,10 @@ public class ElevensBoard extends Board {
 	 */
 	@Override
 	public boolean isLegal(List<Integer> selectedCards) {
-		int one = selectedCards.get(0);
-		int two = selectedCards.get(1);
-		int three = selectedCards.get(2);
-		if (one + two + three == 11) {
-			return true;
-		}
-		else if(one == 11 || one == 12 || one == 13) {
-			if ((two == 11 || two == 12 || two == 13) && two != one) {
-				if ((three == 11 || three == 12 || three == 13) && (three != one || three != two)) {
-					return true;
-				}
-			}
-		}
+		System.out.println("hey" + containsPairSum11(selectedCards));
+		System.out.println(containsJQK(selectedCards));
 		
-		return false;
+		return (containsPairSum11(selectedCards) || containsJQK(selectedCards));
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
 	}
 
@@ -84,15 +74,24 @@ public class ElevensBoard extends Board {
 		for (int i = 0; i < super.size(); i++) {
 			for (int j = i+1; j < super.size(); j++) {
 				for (int k = j+1; k < super.size(); k++) {
-					if (super.cardAt(i).pointValue() + super.cardAt(j).pointValue() + super.cardAt(k).pointValue() == 11) {
+					System.out.println("Another Play 1: " + cardAt(i).pointValue());
+					System.out.println("Another Play 2: " + cardAt(j).pointValue());
+					System.out.println("Another Play 3: " + cardAt(k).pointValue());
+					if (cardAt(i).pointValue() + cardAt(k).pointValue() == 11) {
 						return true;
 					}
-					else if(super.cardAt(i).rank() == "king" || super.cardAt(i).rank() == "queen" || super.cardAt(i).rank() == "jack") {
-						if ((super.cardAt(j).rank() == "king" || super.cardAt(j).rank() == "queen" || super.cardAt(j).rank() == "jack" ) 
-								&& super.cardAt(j).rank() != super.cardAt(i).rank()) {
-							if ((super.cardAt(k).rank() == "king" || super.cardAt(k).rank() == "queen" || super.cardAt(k).rank() == "jack" ) 
-									&& super.cardAt(k).rank() != super.cardAt(i).rank() || super.cardAt(k).rank() != super.cardAt(j).rank()) {
-								return true;
+					if (cardAt(i).pointValue() + cardAt(j).pointValue() == 11) {
+						return true;
+					}
+					if (cardAt(j).pointValue() + cardAt(k).pointValue() == 11) {
+						return true;
+					}
+					else if ((cardAt(i).rank() != cardAt(j).rank()  && cardAt(i).rank() != cardAt(k).rank() && cardAt(k).rank() != cardAt(j).rank())) {
+						 if(cardAt(i).rank() == "king" || cardAt(i).rank() == "queen" || cardAt(i).rank() == "jack") {
+							if ((cardAt(j).rank() == "king" || cardAt(j).rank() == "queen" || cardAt(j).rank() == "jack" )) {
+								if ((cardAt(k).rank() == "king" || cardAt(k).rank() == "queen" || cardAt(k).rank() == "jack" )) {
+									return true;
+								}
 							}
 						}
 					}
@@ -113,17 +112,30 @@ public class ElevensBoard extends Board {
 	 *              contain an 11-pair; false otherwise.
 	 */
 	private boolean containsPairSum11(List<Integer> selectedCards) {
-		for (int i = 0; i < selectedCards.size(); i++) {
+		/*for (int i = 0; i < selectedCards.size(); i++) {
 			for (int j = i+1; j < selectedCards.size(); j++) {
 				for (int k = j+1; k < selectedCards.size(); k++) {
-					if (selectedCards.get(i) + selectedCards.get(j) + selectedCards.get(k) == 11) {
+					if (selectedCards.get(i) + selectedCards.get(k) == 11) {
+						return true;
+					}
+					if (selectedCards.get(j) + selectedCards.get(k) == 11) {
+						return true;
+					}
+					if (selectedCards.get(i) + selectedCards.get(j) == 11) {
 						return true;
 					}
 				}
 			}
+		}*/
+		int pos = 0;
+		for (int i = 0; i < selectedCards.size(); i++) {
+			pos = pos + cardAt(selectedCards.get(i)).pointValue();
 		}
-		
+		if (pos == 11) {
+			return true;
+		}
 		return false;
+		
 		
 		
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
@@ -138,12 +150,22 @@ public class ElevensBoard extends Board {
 	 *              include a jack, a queen, and a king; false otherwise.
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
-		for ( int i = 0; i < selectedCards.size(); i++) {
+		/*for ( int i = 0; i < selectedCards.size(); i++) {
 			for ( int j = i+1; j < selectedCards.size(); j++) {
 				for ( int k = j+1; k < selectedCards.size(); k++) {
-					if (selectedCards.get(i) + selectedCards.get(j) + selectedCards.get(k) == 36) {
+					if (cardAt(selectedCards.get(i)).pointValue() + selectedCards.get(j) + selectedCards.get(k) == 36) {
 						return true;
 					}
+				}
+			}
+		}*/
+		
+		if (cardAt(selectedCards.get(0)).rank() == "jack" || cardAt(selectedCards.get(0)).rank() == "queen" || cardAt(selectedCards.get(0)).rank() == "king") {
+			if ((cardAt(selectedCards.get(1)).rank() == "jack" || cardAt(selectedCards.get(1)).rank() == "queen" || cardAt(selectedCards.get(1)).rank() == "king"
+					)&& (cardAt(selectedCards.get(1)).rank() != cardAt(selectedCards.get(0)).rank())) {
+				if ((cardAt(selectedCards.get(1)).rank() == "jack" || cardAt(selectedCards.get(1)).rank() == "queen" || cardAt(selectedCards.get(1)).rank() == "king"
+						)&& (cardAt(selectedCards.get(2)).rank() != cardAt(selectedCards.get(1)).rank() || cardAt(selectedCards.get(2)).rank() != cardAt(selectedCards.get(0)).rank())) {
+					return true;
 				}
 			}
 		}

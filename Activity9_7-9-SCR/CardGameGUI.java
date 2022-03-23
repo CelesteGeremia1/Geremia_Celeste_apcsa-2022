@@ -1,3 +1,4 @@
+package activity9;
 import java.awt.Point;
 import java.awt.Graphics;
 import java.awt.Dimension;
@@ -285,11 +286,15 @@ public class CardGameGUI extends JFrame implements ActionListener {
 			List<Integer> selection = new ArrayList<Integer>();
 			for (int k = 0; k < board.size(); k++) {
 				if (selections[k]) {
+					System.out.print("help");
 					selection.add(new Integer(k));
+					System.out.print(selection);
 				}
 			}
 			// Make sure that the selected cards represent a legal replacement.
+			System.out.println("hello");
 			if (!board.isLegal(selection)) {
+				System.out.println("error");
 				signalError();
 				return;
 			}
@@ -298,11 +303,14 @@ public class CardGameGUI extends JFrame implements ActionListener {
 			}
 			// Do the replace.
 			board.replaceSelectedCards(selection);
-			if (board.isEmpty()) {
+			if (board.gameIsWon()) {
+				System.out.println("empty");
 				signalWin();
 			} else if (!board.anotherPlayIsPossible()) {
+				System.out.println("moment");
 				signalLoss();
 			}
+			System.out.println("test");
 			repaint();
 		} else if (e.getSource().equals(restartButton)) {
 			board.newGame();

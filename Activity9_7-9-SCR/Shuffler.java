@@ -1,3 +1,4 @@
+package activity9;
 /**
  * This class provides a convenient way to test shuffling methods.
  */
@@ -69,7 +70,7 @@ public class Shuffler {
 		}
 		
 		k = 1;
-		for (int i = (values.length/2); i < values.length; i++) {
+		for (int i = (values.length/2); i < values.length -1; i++) {
 			shuffled[k] = values[i];
 			k += 2;
 		}
