@@ -19,6 +19,22 @@ public class Ball extends Block
 
 	
 	//add the other Ball constructors
+	public Ball( int x, int y, int w, int h)
+	{
+		super(x, y, w, h);
+	}
+	
+	public Ball( int x, int y, int w, int h, Color c)
+	{
+		super(x, y, w, h, c);
+	}
+	
+	public Ball( int x, int y, int w, int h, Color c, int xS, int yS)
+	{
+		super(x, y, w, h, c);
+		xSpeed = xS;
+		ySpeed = yS;
+	}
 	
 	public Ball( int x, int y)
 	{
@@ -55,7 +71,6 @@ public class Ball extends Block
       test.setY(ySpeed + test.getY());
       
       test.draw(window);
-      
    }
    
 	public boolean equals(Object obj)

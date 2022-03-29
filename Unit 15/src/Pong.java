@@ -20,12 +20,23 @@ public class Pong extends Canvas implements KeyListener, Runnable
 	private Paddle rightPaddle;
 	private boolean[] keys;
 	private BufferedImage back;
+	private int leftScore;
+	private int rightScore;
+	
+	public static final boolean PONG_LAB_ASSESSMENT = false;
+	private boolean hitLeftPaddle = false;
+	private boolean hitRightPaddle = false;
 
 
 	public Pong()
 	{
 		//set up all variables related to the game
-
+		ball = new Ball(10,100,10,10,Color.blue,2,1);
+		leftPaddle = new Paddle(20,200,10,40,Color.orange, 2);
+		rightPaddle = new Paddle(760, 200, 10, 40, Color.orange, 2);
+		keys = new boolean[4];
+		leftScore = 0;
+		rightScore = 0;
 
 
 
@@ -87,22 +98,19 @@ public class Pong extends Canvas implements KeyListener, Runnable
 
 
 		//see if the paddles need to be moved
+		if(keys[0] == true) {
+			leftPaddle.moveUpAndDraw(graphToBack);
+		}
+		if(keys[1] == true) {
+			leftPaddle.moveDownAndDraw(graphToBack);
+		}
+		if(keys[2] == true) {
+			rightPaddle.moveUpAndDraw(graphToBack);
+		}
+		if(keys[3] == true) {
+			rightPaddle.moveDownAndDraw(graphToBack);
+		}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 

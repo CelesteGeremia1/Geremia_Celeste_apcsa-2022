@@ -33,12 +33,12 @@ public class Paddle extends Block
 		super(10,10);
       speed =5;
    }
-   public Paddle(int one, int two, int three, int four, Color c, int five)
+   public Paddle(int one, int two, int three, int four, Color c, int s)
    {
 		super(10,10);
       speed =5;
    }
-   public Paddle(int one, int two, int three, int four, int five)
+   public Paddle(int x, int y, int w, int h, int s)
    {
 		super(10,10);
       speed =5;
@@ -54,13 +54,17 @@ public class Paddle extends Block
 
    public void moveUpAndDraw(Graphics window)
    {
-
+	   draw(window,Color.white);
+	   setY(getY() -getSpeed());
+	   draw(window);
 
    }
 
    public void moveDownAndDraw(Graphics window)
    {
-
+	   draw(window, Color.white);
+	   setY(getY() + getSpeed());
+	   draw(window);
 
    }
 
@@ -87,4 +91,7 @@ public class Paddle extends Block
 
    
    //add a toString() method
+   public String toString() {
+	   return null;
+   }
 }

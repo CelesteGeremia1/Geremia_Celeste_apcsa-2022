@@ -25,8 +25,20 @@ public class Block implements Locatable
 		setX(x);
 		setY(y);
 	}
-	
 	public Block(int w, int h, Color c) {
+		setWidth(w);
+		setHeight(h);
+		setColor(c);
+	}
+	public Block(int x, int y, int w, int h) {
+		setX(x);
+		setY(y);
+		setHeight(h);
+		setWidth(w);
+	}
+	public Block(int x, int y,int w, int h, Color c) {
+		setX(x);
+		setY(y);
 		setHeight(h);
 		setWidth(w);
 		setColor(c);
