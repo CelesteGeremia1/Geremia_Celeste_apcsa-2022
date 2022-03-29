@@ -29,7 +29,7 @@ public class NumberSorter
 		int[] sorted = new int[getNumDigits(number)];
 		int nums = number;
 		for (int k = 0; k < getNumDigits(number) ; k++) {
-			System.out.println(nums%10 + " hey ");
+			//System.out.println(nums%10 + " hey ");
 			sorted[k] = nums%10;
 			nums = nums/10;
 		}
