@@ -5,10 +5,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Ball extends Block
+public class Ball extends Block 
 {
 	private int xSpeed;
 	private int ySpeed;
+	
 
 	public Ball()
 	{
@@ -38,9 +39,7 @@ public class Ball extends Block
 	
 	public Ball( int x, int y)
 	{
-		super(200,200);
-		xSpeed = x;
-		ySpeed = y;
+		super(x,y);
 	}
 	
    //add the set methods
@@ -50,6 +49,8 @@ public class Ball extends Block
 	public void setYSpeed(int speed) {
 		xSpeed = speed;
 	}
+	
+	
 	public int getXSpeed() {
 		return xSpeed;
 	}
@@ -75,7 +76,9 @@ public class Ball extends Block
    
 	public boolean equals(Object obj)
 	{
-		
+		if (obj.toString().equals(toString()) ) {
+			return true;
+		}
 
 
 
@@ -85,7 +88,7 @@ public class Ball extends Block
    
    //add a toString() method
 	public String toString() {
-		return xSpeed + "," + ySpeed;
+		return xSpeed + " , " + ySpeed;
 		
 	}
 

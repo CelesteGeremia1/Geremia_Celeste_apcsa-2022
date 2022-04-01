@@ -73,26 +73,65 @@ public class Pong extends Canvas implements KeyListener, Runnable
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
 
-
+		
 		//see if ball hits left wall or right wall
 		if(!(ball.getX()>=10 && ball.getX()<=780))
 		{
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
+			 if (ball.getX() <= 40) {
+				 rightScore++;
+			 }
+			 if (ball.getX() >= 720) {
+				leftScore++; 
+			 }
+			 
+			 try 
+			 {
+				 Thread.currentThread().sleep(950);
+			 } catch(Exception e) {}
+			 
+			 ball.draw(graphToBack, Color.WHITE);
+			 ball.setX((int)(Math.random() *50) + 400);
+			 ball.setY((int)(Math.random() *50) + 300);
+			 ball.setXSpeed((int)(Math.random() * 10));
+			 ball.setYSpeed((int)(Math.random() * 10));
 		}
-
+		graphToBack.setColor(Color.WHITE);
+		graphToBack.fillRect(440,520,80,80);
+		
 		
 		//see if the ball hits the top or bottom wall 
 
 
-
-
 		//see if the ball hits the left paddle
+		if (ball.getX() <= leftPaddle.getxPostion() + leftPaddle.getWidth() + Math.abs(ball.getXSpeed()) &&
+				ball.getY() >= leftPaddle.getyPostion() && ball.getY() <= leftPaddle.getyPostion() + leftPaddle.getHeight()
+				|| ball.getY() + ball.getHeight() >= leftPaddle.getY() 
+				&& ball.getY() + ball.getHeight() > leftPaddle.getY() + leftPaddle.getHeight()) {
+			if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - Math.abs(ball.getXSpeed())) {
+				ball.setYSpeed(ball.getYSpeed() * -1);
+			}
+			else {
+				ball.setXSpeed(ball.getXSpeed() * -1);
+			}
 		
+		}
 		
 		
 		//see if the ball hits the right paddle
+		if ((ball.getX() <= rightPaddle.getxPostion() + rightPaddle.getWidth() + Math.abs(ball.getXSpeed())) &&
+				ball.getY() >= rightPaddle.getyPostion() && ball.getY() <= rightPaddle.getyPostion() + rightPaddle.getHeight()
+				|| ball.getY() + ball.getHeight() >= rightPaddle.getY() 
+				&& ball.getY() + ball.getHeight() > rightPaddle.getY() + rightPaddle.getHeight()) {
+			if (ball.getX() <= rightPaddle.getX() + rightPaddle.getWidth() - Math.abs(ball.getXSpeed())) {
+				ball.setYSpeed(ball.getYSpeed() * -1);
+			}
+			else {
+				ball.setXSpeed(ball.getXSpeed() * -1);
+			}
 		
+		}
 		
 		
 

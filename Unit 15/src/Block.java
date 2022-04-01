@@ -90,7 +90,7 @@ public class Block implements Locatable
    
 	public boolean equals(Object obj)
 	{
-		if (obj.equals(getColor())) {
+		if (obj.toString().equals(toString())) {
 			return true;
 		}
 
@@ -132,7 +132,7 @@ public class Block implements Locatable
    //add a toString() method  - x , y , width, height, color
 	public String toString() {
 		
-		return xPos + "," + yPos + "," + width + "," + height + "," + color;
+		return xPos + " , " + yPos + " , " + width + " , " + height + " , " + color;
 		
 	}
 	
