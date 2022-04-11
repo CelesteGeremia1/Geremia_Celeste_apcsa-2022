@@ -17,7 +17,7 @@ class BlinkyBall extends Ball
 
    public BlinkyBall(int x, int y)
    {
-
+	   
 
 
    }

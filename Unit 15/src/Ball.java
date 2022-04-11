@@ -62,16 +62,17 @@ public class Ball extends Block
    {
    	//draw a white ball at old ball location
 	  Block test = new Block();
-	  test.draw(window, Color.WHITE);
+	  test.draw(window, Color.white);
 	   
-      setX(getX()+xSpeed);
-      setY(getY()+ySpeed);
+      setX(getX() + xSpeed);
+      setY(getY() + ySpeed);
       	
 		//draw the ball at its new location
       test.setX(xSpeed + test.getX());
       test.setY(ySpeed + test.getY());
       
-      test.draw(window);
+      test.draw(window, Color.black);
+      System.out.println(ySpeed);
    }
    
 	public boolean equals(Object obj)
@@ -79,8 +80,6 @@ public class Ball extends Block
 		if (obj.toString().equals(toString()) ) {
 			return true;
 		}
-
-
 
 		return false;
 	}   

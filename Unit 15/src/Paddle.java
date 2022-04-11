@@ -18,38 +18,52 @@ public class Paddle extends Block
    public Paddle()
    {
 		super(10,10);
-	   speed =5;
+	   speed = 5;
    }
    
 
    //add the other Paddle constructors
    public Paddle(int one, int two)
    {
-		super(10,10);
-      speed =5;
+		super(one,two);
+		setX(one);
+      speed = 5;
    }
    public Paddle(int one, int two, int three)
    {
-		super(10,10);
-      speed =5;
+		super(one,two);
+      speed = three;
    }
    public Paddle(int one, int two, int three, int four, Color c, int s)
    {
-		super(10,10);
-      speed =5;
+		super(one,two, three, four, c);
+      speed = s;
    }
    public Paddle(int x, int y, int w, int h, int s)
    {
-		super(10,10);
-      speed =5;
+		super(x, y, w, h);
+      speed = s;
    }
 
+   public void setX(int x) {
+	   xPostion = x;
+   }
 
+   public void setY(int y) {
+	   yPostion = y;
+   }
+ 
+   public void setHeight(int h) {
+	   height = h;
+   }
 
-
-
-
-
+   public void setWidth(int w) {
+	   width = w;
+   }
+   
+   public void setSpeed(int s) {
+	   speed = s;
+   }
 
 
    public void moveUpAndDraw(Graphics window)
@@ -92,6 +106,6 @@ public class Paddle extends Block
    
    //add a toString() method
    public String toString() {
-	   return null;
+	   return speed + " " + height + " " + width + " " + xPostion + " " + yPostion;
    }
 }
