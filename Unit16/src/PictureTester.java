@@ -51,6 +51,13 @@ public class PictureTester
     swan.explore();
   }
   
+  public static void testEdgeDetection2()
+  {
+    Picture temple = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/temple.jpg");
+    temple.edgeDetection(10);
+    temple.explore();
+  }
+  
   /** Method to test KeepBlue */
   public static void testKeepOnlyBlue()
   {
@@ -95,6 +102,73 @@ public class PictureTester
     water.explore();
   }
    
+  public static void testMirrorHorizontal()
+  {
+    Picture motorcycle = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/redMotorcycle.jpg");
+    motorcycle.mirrorHorizontal();
+    motorcycle.explore();
+  }
+  
+ public static void testMirrorDiagonal()
+ {
+   Picture flower = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/whiteFlower.jpg");
+   flower.mirrorDiagonal();
+   flower.explore();
+ }
+  
+ public static void testMirrorArms()
+ {
+   Picture snowman = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/snowman.jpg");
+   snowman.mirrorArms();
+   snowman.explore();
+ }
+ 
+ public static void testMirrorGull()
+ {
+   Picture gull = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/seagull.jpg");
+   gull.mirrorGull();
+   gull.explore();
+ }
+  
+ public static void testCopy(Picture fromPic, 
+         int startRow, int startCol)
+ {
+   Picture copys = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/seagull.jpg");
+   copys.copy( fromPic, 
+           startRow, startCol);
+   copys.explore();
+ }
+  
+ public static void testGetCountRedOverValue(int num)
+ {
+   Picture jenny = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/jenny-red.jpg");
+   System.out.print(jenny.redOver(num));
+   jenny.explore();
+ }
+  
+ public static void testClearBlueOverValue(int num)
+ {
+   Picture motor = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/blueMotorcycle.jpg");
+   motor.clearBlue(num);
+   motor.explore();
+ }
+  
+ public static void testSetRedToHalfValueInTopHalf()
+ {
+   Picture gorge = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/gorge.jpg");
+   gorge.halfRed();
+   gorge.explore();
+ }
+  
+ public static void testChromakey(Picture fromPic, 
+         int startRow, int startCol)
+ {
+   Picture copys = new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/seagull.jpg");
+   copys.chromaKey( fromPic, 
+           startRow, startCol);
+   copys.explore();
+ }
+  
   /** Main method for testing.  Every class can have a main
     * method in Java */
   public static void main(String[] args)
@@ -109,20 +183,21 @@ public class PictureTester
     //testNegate();
     //testGrayscale();
     //testFixUnderwater();
-    testMirrorVertical();
+    //testMirrorVertical();
     //testMirrorTemple();
-    //testMirrorArms();
+    //testMirrorArms(); 
+	//testMirrorHorizontal();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
-    //testCopy();
+    //testCopy(new Picture( "C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/snowman.jpg"), 45, 45);
     //testEdgeDetection();
     //testEdgeDetection2();
-    //testChromakey();
+    //testChromakey(new Picture("C:/Users/geremiac1730/Documents/GitHub/Geremia_Celeste_apcsa-2022/Unit16/src/images/blue-mark.jpg"), 45, 45);
     //testEncodeAndDecode();
     //testGetCountRedOverValue(250);
     //testSetRedToHalfValueInTopHalf();
-    //testClearBlueOverValue(200);
+    testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
   }
 }
