@@ -184,10 +184,24 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			shots.moveEmAll();
 			
 		}
+		
+		for (int i = 0; i < horde.getAliens().size(); i++) {
+			 if (horde.getAliens().get(i).getY() > 450) {
+				 	graphToBack.setColor(Color.RED);
+					graphToBack.fillRect(0, 0, 800, 600);
+					graphToBack.setColor(Color.WHITE);
 
+					graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
+					graphToBack.drawString("Game Over! Loser", 300, 300);
+					graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+					graphToBack.drawString("Score : " + score, 370, 350);
+					
+					ship.setY(1000);
+			 }
+		}
 		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 		
-		if (collision() || ship.getY() >= 1000 - ship.getSpeed()) {
+		if ((collision() || ship.getY() >= 1000 - ship.getSpeed())) {
 			graphToBack.setColor(Color.RED);
 			graphToBack.fillRect(0, 0, 800, 600);
 			graphToBack.setColor(Color.WHITE);
