@@ -45,6 +45,29 @@ public class Ship extends MovingThing
 		}
 	}
 
+	public void changeImage() {
+		try
+		{
+			URL url = getClass().getResource("/images/ship.jpgWithShield.jpg");
+			image = ImageIO.read(url);
+		}
+		catch(Exception e)
+		{
+			System.out.print("ship power fail");
+		}
+	}
+	
+	public void changeImageBACK() {
+		try
+		{
+			URL url = getClass().getResource("/images/ship.jpg");
+			image = ImageIO.read(url);
+		}
+		catch(Exception e)
+		{
+			System.out.print("ship power fail");
+		}
+	}
 
 	public void setSpeed(int s)
 	{

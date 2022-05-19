@@ -80,8 +80,8 @@ public class AlienHorde
 		for (int i = 0; i < shots.size(); i++) {
 			Ammo am = shots.get(i);
 			for (int j = 0; j < aliens.size(); j++) {
-				if (Math.abs(aliens.get(j).getX() - am.getX()) < 20) {
-					if (Math.abs(aliens.get(j).getY() - am.getY()) < 20) {
+				if (Math.abs(aliens.get(j).getX() - am.getX()) < 30) {
+					if (Math.abs(aliens.get(j).getY() - am.getY()) < 30) {
 						aliens.remove(j);
 						shots.remove(am);
 						

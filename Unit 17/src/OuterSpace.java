@@ -14,8 +14,12 @@ import java.awt.geom.Rectangle2D;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
+import java.net.URL;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
@@ -37,6 +41,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private int accuracy;
 	private int counter;
 	private int orignalSize;
+	private int secondsToSleep;
+	
+	private int lives;
+	private PowerUp up;
 	
 	boolean RUNNING;
 	
@@ -50,7 +58,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 		alienOne = new Alien();
 		
-		horde = new AlienHorde(10);
+		horde = new AlienHorde(20);
 		
 		ship = new Ship(350,500,50,50,2);
 		
@@ -62,9 +70,13 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		accuracy = 100;
 		
+		up = new  PowerUp(400,300,40,40);
+		
 		orignalSize = horde.getAliens().size();
 		
 		counter = 0;
+		
+		lives = 1;
 		
 		alienTwo = new Alien();
 		
@@ -79,13 +91,38 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	   paint(window);
    }
    
+   public static void wait(int ms)
+   {
+       try
+       {
+           Thread.sleep(ms);
+       }
+       catch(InterruptedException ex)
+       {
+           Thread.currentThread().interrupt();
+       }
+   }
+   
    public boolean collision() {
 	   Rectangle2D a = new Rectangle(ship.getX(), ship.getY(), ship.getWidth(), ship.getHeight());
 	   
 	   for (Alien b : horde.getAliens()) {
 		   if (a.intersects(new Rectangle(b.getX(), b.getY(), b.getWidth(), b.getHeight()))) {
+			   lives--;
 			   return true;
 		   }
+	   }
+	   return false;
+   }
+   
+   public boolean collisionUP() {
+	   Rectangle2D a = new Rectangle(ship.getX(), ship.getY(), ship.getWidth(), ship.getHeight());
+		   if (a.intersects(new Rectangle(up.getX(), up.getY(), up.getWidth(), up.getHeight()))) {
+			   lives = 2;
+			   System.out.println(lives);
+			   up.setX(2000);
+			   up.setY(2000);
+			   return true;
 	   }
 	   return false;
    }
@@ -118,6 +155,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		horde.drawEmAll(graphToBack);
 		horde.moveEmAll();
 		shots.drawEmAll(graphToBack);
+		up.draw(graphToBack);
 		
 		if(keys[0] == true)
 		{
@@ -166,7 +204,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		}
 		
 		if (score >= orignalSize ) {
-			graphToBack.setColor(Color.GREEN);
+			graphToBack.setColor(new Color( 0, 151 , 50));
 			graphToBack.fillRect(0, 0, 800, 600);
 			graphToBack.setColor(Color.WHITE);
 
@@ -175,6 +213,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
 			graphToBack.drawString("Score : " + score, 335, 350);
 			graphToBack.drawString("Accuracy : " + accuracy + "%", 335, 400);
+		}
+		
+		if (collisionUP()) {
+			ship.changeImage();
 		}
 		
 		
@@ -187,7 +229,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		
 		for (int i = 0; i < horde.getAliens().size(); i++) {
 			 if (horde.getAliens().get(i).getY() > 450) {
-				 	graphToBack.setColor(Color.RED);
+				 	graphToBack.setColor(new Color (233, 30 , 30));
 					graphToBack.fillRect(0, 0, 800, 600);
 					graphToBack.setColor(Color.WHITE);
 
@@ -197,23 +239,33 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 					graphToBack.drawString("Score : " + score, 370, 350);
 					
 					ship.setY(1000);
+					
+					lives = 0;
 			 }
 		}
-		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
 		
-		if ((collision() || ship.getY() >= 1000 - ship.getSpeed())) {
-			graphToBack.setColor(Color.RED);
-			graphToBack.fillRect(0, 0, 800, 600);
-			graphToBack.setColor(Color.WHITE);
-
-			graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
-			graphToBack.drawString("Game Over! Loser", 300, 300);
-			graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
-			graphToBack.drawString("Score : " + score, 370, 350);
-			
-			ship.setY(1000);
+		if (lives == 1) {
+			ship.changeImageBACK();
 		}
+		//add in collision detection to see if Bullets hit the Aliens and if Bullets hit the Ship
+		if (collision() && ship.getY() < 1000 ) {
+			ship.setX(350);
+			ship.setY(500);
+		}
+		if ((ship.getY() >= 1000 - ship.getSpeed()) || lives <= 0) {
+				graphToBack.setColor(new Color (233, 30 , 30));
+				graphToBack.fillRect(0, 0, 800, 600);
+				graphToBack.setColor(Color.WHITE);
 
+				graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 30));
+				graphToBack.drawString("Game Over! Loser", 300, 300);
+				graphToBack.setFont(new Font("Comic Sans MS", Font.PLAIN, 20));
+				graphToBack.drawString("Score : " + score, 370, 350);
+				
+				ship.setY(1000);
+				
+				lives = 0;
+			}
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 
